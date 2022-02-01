@@ -9,41 +9,42 @@
     <carousel-3d :controls-visible="true" class="carousel">
       <slide
         class="slide"
-        v-for="(rig, i) in this.$store.state.user.items['workshops']"
+        v-for="(item, i) in this.$store.state.user.items['workshops']"
         :key="i"
         :index="i"
         style="background-color: #d19e5c; border: solid 0px black"
       >
-        <div class="rigname">{{ rig.name }}</div>
+        <div class="rigname">{{ item.name }}</div>
         <div class="durability">
-          Dur. : {{ rig.current_durability }} / {{ rig.durability }}
+          Dur. : {{ item.current_durability }} / {{ item.durability }}
         </div>
         <ManualAutoClaimButton
           class="switch"
           type="workshops"
-          :id="rig.asset_id"
+          :id="item.asset_id"
         />
         <ManualAutoRepairButton
           class="switch"
           type="workshops"
-          :id="rig.asset_id"
+          :id="item.asset_id"
         />
         <Counter
           class="counter"
-          :item="workshops"
-          :timestamp="rig.claim_time"
+          :item="item"
+          :timestamp="item.claim_time"
           :claiminfo="{
             type: 'workshops',
             action: 'claimdmc',
           }"
           :autoclaim="
-            `this.$store.state.user.items['workshops']['rig.asset_id']` === true
+            `this.$store.state.user.items['workshops']['item.asset_id']` ===
+            true
           "
         />
         <div class="thumb">
           <img
             class="img"
-            :src="'https://mypinata.cloud/ipfs/' + rig.img"
+            :src="'https://mypinata.cloud/ipfs/' + item.img"
             referrerpolicy="no-referrer"
           />
         </div>

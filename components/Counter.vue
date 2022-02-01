@@ -4,7 +4,7 @@
       {{ remainingTime }}
     </button>
     <button class="EnBtn" v-else @click="handleClaim">CLAIM</button>
-    <!--<button @click="test">test</button>-->
+    <button @click="test">test</button>
   </div>
 </template>
 
@@ -69,9 +69,12 @@ export default {
     this.showRemaining();
   },
   methods: {
-    /*test() {
-      console.log(this.$store.state.user.autoclaim[this.claiminfo.type]);
-    },*/
+    test() {
+      console.log("Test :");
+      console.log(this.claiminfo.type);
+      console.log(this.claiminfo.action);
+      console.log(this.item.asset_id);
+    },
     showRemaining() {
       const timer = setInterval(() => {
         const now = new Date();
