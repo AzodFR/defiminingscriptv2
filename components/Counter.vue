@@ -128,6 +128,7 @@ export default {
           this.action == "claimdmc"
             ? { username: this.$store.state.user.name }
             : { to: this.$store.state.user.name, asset_id: this.item.asset_id };
+          console.log("test:", data)
         const res = await this.$store.state.user.wax.api.transact(
           {
             actions: [
