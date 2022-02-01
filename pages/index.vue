@@ -1,7 +1,7 @@
 <template>
   <div>
     <DefiLogo />
-    <Login v-if="name == ''"/>
+    <Login v-if="name == ''" />
     <div v-else>
       <Interval />
       <Banner />
@@ -23,18 +23,26 @@ import Workshops from "../components/Workshops.vue";
 
 export default {
   name: "IndexPage",
-  components: { DefiLogo, Login, Banner, Interval, Rigs, ElecSources, Workshops },
+  components: {
+    DefiLogo,
+    Login,
+    Banner,
+    Interval,
+    Rigs,
+    ElecSources,
+    Workshops,
+  },
   computed: {
     name() {
       return this.$store.state.user.name;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
 body {
   background-color: #111c38;
-  color:aliceblue
+  color: aliceblue;
 }
 </style>
