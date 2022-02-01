@@ -12,7 +12,7 @@
 import * as waxjs from "@waxio/waxjs/dist";
 export default {
   name: "Counter",
-  props: ["timestamp", "autoclaim", "item", "claiminfo"],
+  props: ["timestamp", "autoclaim", "item", "claiminfo", dmc],
   data() {
     return {
       loaded: false,
@@ -125,7 +125,7 @@ export default {
 
       try {
         const data =
-          this.action == "claimdmc"
+          this.claiminfo.action == "claimdmc"
             ? { username: this.$store.state.user.name }
             : { to: this.$store.state.user.name, asset_id: this.item.asset_id };
           console.log("test:", data)
