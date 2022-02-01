@@ -9,6 +9,9 @@
       <Rigs />
       <Workshops />
     </div>
+    <footer style="   position:absolute; bottom:0;">
+      Created by Azod#9999 (vzfjg.wam) && HME#1240 (43xts.wam)
+    </footer>
   </div>
 </template>
 

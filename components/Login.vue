@@ -16,7 +16,7 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
-    }
+    },
   },
   data() {
     return {
@@ -36,28 +36,28 @@ export default {
     };
   },
   methods: {
-    login: async function() {
+    login: async function () {
       this.wait = true;
-      await this.$store.commit("user/login", this.selected)
+      await this.$store.commit("user/login", this.selected);
       const wax = this.$store.state.user.wax;
-      console.log(wax)
+      //console.log(wax);
       const waitLoging = setInterval(() => {
-        if ( wax != null && wax.userAccount != undefined) {
+        if (wax != null && wax.userAccount != undefined) {
           clearInterval(waitLoging);
           this.$store.commit("user/setUser");
-          this.$emit("logged")
+          this.$emit("logged");
         }
-      }, 1000)
-    }
+      }, 1000);
+    },
   },
 };
 </script>
 
 <style>
 .login-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }
 .api-selector {
   margin-right: 1%;

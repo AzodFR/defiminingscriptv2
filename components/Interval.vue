@@ -3,7 +3,7 @@
 </template>
 
 <script>
-const time = 15000
+const time = 15000;
 export default {
   name: "Interval",
   async mounted() {
@@ -56,30 +56,47 @@ export default {
           await items.rows.forEach(async (elem) => {
             elem.img = this.findInTemplate(elem.template_id).img;
             if (localStorage.getItem(`${elem.asset_id}`)) {
-            if (localStorage.getItem(`${elem.asset_id}`) == "true"){
-                this.$store.commit("user/setAutoClaim", { type: item, id: elem.asset_id, value: true });
+              if (localStorage.getItem(`${elem.asset_id}`) == "true") {
+                this.$store.commit("user/setAutoClaim", {
+                  type: item,
+                  id: elem.asset_id,
+                  value: true,
+                });
                 this.checker = true;
+              } else {
+                this.$store.commit("user/setAutoClaim", {
+                  type: item,
+                  id: elem.asset_id,
+                  value: false,
+                });
+              }
             }
-            else {
-                this.$store.commit("user/setAutoClaim", { type: item, id: elem.asset_id, value: false });
-            }
-        }
-        if (localStorage.getItem(`${elem.asset_id}_r`)) {
-            if (localStorage.getItem(`${elem.asset_id}_r`) == "true"){
-                this.$store.commit("user/setAutoRepair", { type: item, id: elem.asset_id, value: true });
+            if (localStorage.getItem(`${elem.asset_id}_r`)) {
+              if (localStorage.getItem(`${elem.asset_id}_r`) == "true") {
+                this.$store.commit("user/setAutoRepair", {
+                  type: item,
+                  id: elem.asset_id,
+                  value: true,
+                });
                 this.checker = true;
-            }
-            else {
-                this.$store.commit("user/setAutoRepair", { type: item, id: elem.asset_id, value: false });
-            }
-        }
-        else {
-                this.$store.commit("user/setAutoRepair", { type: item, id: elem.asset_id, value: false });
+              } else {
+                this.$store.commit("user/setAutoRepair", {
+                  type: item,
+                  id: elem.asset_id,
+                  value: false,
+                });
+              }
+            } else {
+              this.$store.commit("user/setAutoRepair", {
+                type: item,
+                id: elem.asset_id,
+                value: false,
+              });
             }
             newList.push(elem);
           });
           if (newList.length) {
-            console.log(newList)
+            //console.log(newList)
             this.$store.commit("user/setItem", { value: newList, type: item });
           }
         });
