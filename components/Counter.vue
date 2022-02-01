@@ -12,7 +12,7 @@
 import * as waxjs from "@waxio/waxjs/dist";
 export default {
   name: "Counter",
-  props: ["timestamp", "autoclaim", "item", "claiminfo", dmc],
+  props: ["timestamp", "autoclaim", "item", "claiminfo"],
   data() {
     return {
       loaded: false,
