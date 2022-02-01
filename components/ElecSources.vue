@@ -1,8 +1,8 @@
 <template>
-<div style="display: block; margin-left: 20%; margin-right: 20%" >
-  <h4>Electricity</h4>
+<div style="display: block; margin-left: 20%; margin-right: 20%" v-if="this.$store.state.user.items['elecsources'].length">
+  <h4>Electricity</h4> <AutoClaimButton type="elecsources"/>
   <carousel-3d :controls-visible="true">
-    <slide v-for="(rig, i) in this.$store.state.user.items['elecsources']" :key="i" :index="i-1" style="background-color: #d19e5c; border: solid 0px black">
+    <slide v-for="(rig, i) in this.$store.state.user.items['elecsources']" :key="i" :index="i" style="background-color: #d19e5c; border: solid 0px black">
       {{rig.current_durability}} / {{rig.durability}}
       <img
               :src="'https://mypinata.cloud/ipfs/' + rig.img"
@@ -18,10 +18,11 @@
 
 <script>
 import { Carousel3d, Slide } from 'vue-carousel-3d';
+import AutoClaimButton from './AutoClaimButton.vue';
 export default {
   name: "ElecSources",
   components: {
-    Carousel3d, Slide
+    Carousel3d, Slide, AutoClaimButton
   }
 }
 </script>

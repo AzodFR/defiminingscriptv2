@@ -3,6 +3,28 @@ import * as waxjs from "@waxio/waxjs/dist";
 export const state = () => ({
   name: "",
   energy: 0,
+  autoclaim: {
+    "rigs": {
+      "global": false,
+    },
+    "elecsources": {
+      "global": false
+    },
+    "workshops": {
+      "global": false
+    }
+  },
+  autorepair: {
+    "rigs": {
+      "global": false,
+    },
+    "elecsources": {
+      "global": false
+    },
+    "workshops": {
+      "global": false
+    }
+  },
   tokens: {
     "WAX": 0,
     "DMC": 0,
@@ -48,7 +70,11 @@ export const mutations = {
   },
   setTemplates(state, value) {
     state.templates = value
+  },
+  setAutoClaim(state, param) {
+    state.autoclaim[param.type][param.id] = param.value;
+  },
+  setAutoRepair(state, param) {
+    state.autorepair[param.type][param.id] = param.value;
   }
 }
-
-
