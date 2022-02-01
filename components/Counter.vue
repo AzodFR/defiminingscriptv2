@@ -124,6 +124,10 @@ export default {
       console.log(this.$store.state.user.name);
 
       try {
+        const data =
+          this.action == "claimdmc"
+            ? { username: this.$store.state.user.name }
+            : { to: this.$store.state.user.name, asset_id: this.item.asset_id };
         const res = await this.$store.state.user.wax.api.transact(
           {
             actions: [
@@ -136,10 +140,7 @@ export default {
                     permission: "active",
                   },
                 ],
-                data: {
-                  to: this.$store.state.user.name,
-                  asset_id: this.item.asset_id,
-                },
+                data: data,
               },
             ],
           },
