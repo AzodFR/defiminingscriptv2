@@ -93,6 +93,8 @@ export default {
             ] === true
           ) {
             console.log("AutoClaim timer = 0");
+            console.log(this.claiminfo.type);
+            console.log(this.item.asset_id);
             this.handleClaim();
           }
           return null;
