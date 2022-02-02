@@ -14,9 +14,11 @@
         :index="i"
         style="background-color: #d19e5c; border: solid 4px #ea6813"
       >
-        <div class="rigname">{{ item.name }}</div>
+        <div class="rigname">
+          {{ item.name }} ({{ item.current_durability }}/{{ item.durability }})
+        </div>
         <div class="durability">
-          Dur. : {{ item.current_durability }} / {{ item.durability }}
+          <em>{{ item.current_durability / 5 }} claims before repair</em>
         </div>
         <LocalAutoClaimButton class="switch" type="rigs" :id="item.asset_id" />
         <LocalAutoRepairButton class="switch" type="rigs" :id="item.asset_id" />
@@ -70,6 +72,7 @@ export default {
 .rigname {
   display: flex;
   justify-content: center;
+  color: #111c38;
   font-weight: bold;
   font-size: 1.5em;
   padding: 5px 0;
