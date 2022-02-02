@@ -6,7 +6,7 @@
     <h4>Rigs</h4>
     <AutoClaimButton type="rigs" />
     <AutoRepairButton type="rigs" />
-    <carousel-3d :controls-visible="true" class="carousel" :height="300">
+    <carousel-3d :controls-visible="true" class="carousel" :height="330">
       <slide
         class="slide"
         v-for="(item, i) in this.$store.state.user.items['rigs']"
@@ -96,7 +96,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .img {
   width: 70%;
