@@ -5,7 +5,6 @@
     <div v-else>
       <Interval />
       <Banner />
-
       <Rigs />
       <Workshops />
       <ElecSources />
