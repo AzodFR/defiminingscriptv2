@@ -8,11 +8,9 @@
 
 <script>
 export default {
-  name: "ManualAutoButton",
+  name: "LocalAutoClaimButton",
   data() {
-    return {
-      checker: this.$store.state.user.autoclaim[this.type]["global"],
-    };
+    return {};
   },
   props: {
     type: String,
@@ -26,15 +24,18 @@ export default {
         } else {
           return this.$store.state.user.autoclaim[this.type][this.id];
         }
+        //return this.$store.state.user.autoclaim[this.type][this.id];
       },
       set(value) {
-        //alert(value);
+        //alert("local : " + this.type + ", " + this.id + " " + value);
+        // peu importe la valeur (0 --> 1 || 1 --> 0) on la save dans l'item (dans store et localstorage) :
         localStorage.setItem(`${this.id}`, `${value}`);
         this.$store.commit("user/setAutoClaim", {
           type: this.type,
           id: this.id,
           value: value,
         });
+        // et si la valeur passe à false (1 --> 0) : on passe le global à false (dans store et localstorage) :
         if (!value) {
           this.$store.commit("user/setAutoClaim", {
             type: this.type,

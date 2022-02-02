@@ -69,9 +69,9 @@ footer {
   margin: 0 15px 10px 50px;
 }
 .dev1 {
-  color: rgb(173, 142, 55);
+  color: #d666e0;
 }
 .dev2 {
-  color: rgb(21, 209, 146);
+  color: #e74c3c;
 }
 </style>

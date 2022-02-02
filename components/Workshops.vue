@@ -6,24 +6,24 @@
     <h4>Workshops</h4>
     <AutoClaimButton type="workshops" />
     <AutoRepairButton type="workshops" />
-    <carousel-3d :controls-visible="true" class="carousel">
+    <carousel-3d :controls-visible="true" class="carousel" :height="350">
       <slide
         class="slide"
         v-for="(item, i) in this.$store.state.user.items['workshops']"
         :key="i"
         :index="i"
-        style="background-color: #d19e5c; border: solid 0px black"
+        style="background-color: #d19e5c; border: solid 4px #ea6813"
       >
         <div class="rigname">{{ item.name }}</div>
         <div class="durability">
           Dur. : {{ item.current_durability }} / {{ item.durability }}
         </div>
-        <ManualAutoClaimButton
+        <LocalAutoClaimButton
           class="switch"
           type="workshops"
           :id="item.asset_id"
         />
-        <ManualAutoRepairButton
+        <LocalAutoRepairButton
           class="switch"
           type="workshops"
           :id="item.asset_id"
@@ -56,9 +56,9 @@
 <script>
 import { Carousel3d, Slide } from "vue-carousel-3d";
 import AutoClaimButton from "./AutoClaimButton.vue";
-import ManualAutoClaimButton from "./ManualAutoClaimButton.vue";
+import LocalAutoClaimButton from "./LocalAutoClaimButton.vue";
 import AutoRepairButton from "./AutoRepairButton.vue";
-import ManualAutoRepairButton from "./ManualAutoRepairButton.vue";
+import LocalAutoRepairButton from "./LocalAutoRepairButton.vue";
 export default {
   name: "Workshops", /// *************
   data() {
@@ -68,9 +68,9 @@ export default {
     Carousel3d,
     Slide,
     AutoClaimButton,
-    ManualAutoClaimButton,
+    LocalAutoClaimButton,
     AutoRepairButton,
-    ManualAutoRepairButton,
+    LocalAutoRepairButton,
   },
 };
 </script>
@@ -82,7 +82,7 @@ export default {
   font-weight: bold;
   font-size: 1.5em;
   padding: 5px 0;
-  background-color: rgb(230, 158, 65);
+  background-color: #ea6813;
 }
 .durability {
   display: flex;
@@ -98,15 +98,13 @@ export default {
   justify-content: center;
   margin: 5px 0 0 0;
 }
-.carousel {
-  height: 500px;
-}
 .switch {
   margin: 0 10px;
 }
 .thumb {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .img {
   width: 60%;
