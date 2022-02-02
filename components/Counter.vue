@@ -5,6 +5,7 @@
     </button>
     <button class="EnBtn" v-else @click="handleClaim">CLAIM</button>
     <!--<button @click="test">test</button>-->
+    <b-spinner label="Spinning" v-if="wait" class="spinner-login"></b-spinner>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default {
   props: ["timestamp", "autoclaim", "item", "claiminfo"],
   data() {
     return {
+      wait: false,
       loaded: false,
       readyToClaim: false,
       displayHours: 0,
@@ -124,6 +126,8 @@ export default {
       console.log(this.$store.state.user.name);
 
       try {
+        this.wait = true;
+        this.readyToClaim = false;
         const data =
           this.claiminfo.action == "claimdmc"
             ? { username: this.$store.state.user.name }
@@ -151,10 +155,10 @@ export default {
           }
         );
         //alert("claiming !");
-        this.readyToClaim = false;
       } catch (e) {
         console.log(e);
       }
+      this.wait = false;
     },
   },
 };

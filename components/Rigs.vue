@@ -32,6 +32,7 @@
             `this.$store.state.user.items['rigs']['item.asset_id']` === true
           "
         />
+
         <div class="thumb">
           <img
             class="img"
@@ -53,9 +54,7 @@ import AutoRepairButton from "./AutoRepairButton.vue";
 import LocalAutoRepairButton from "./LocalAutoRepairButton.vue";
 export default {
   name: "Rigs", /// *************
-  data() {
-    return {};
-  },
+  data() {},
   components: {
     Carousel3d,
     Slide,
