@@ -9,14 +9,14 @@
       <Rigs />
       <Workshops />
     </div>
-    <div class="footer">
-      <footer>
-        Created by <span class="dev1">Azod#9999 (vzfjg.wam)</span> &&
-        <span class="dev2">HME#1240 (43xts.wam)</span>
-        <a href="https://discord.gg/"
-          ><img src="../assets/QTTlogo.png" alt="" class="img"
-        /></a>
-      </footer>
+    <Footer />
+    <div class="devinfo">
+      <p class="txt">
+        Created by
+        <span class="dev1"> Azod#9999 (vzfjg.wam) </span>
+        &&
+        <span class="dev2"> HME#1240 (43xts.wam) </span>
+      </p>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ import Interval from "../components/Interval.vue";
 import Rigs from "../components/Rigs.vue";
 import ElecSources from "../components/ElecSources.vue";
 import Workshops from "../components/Workshops.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "IndexPage",
@@ -54,19 +55,15 @@ body {
   background-color: #111c38;
   color: aliceblue;
 }
-footer {
-  position: absolute;
+
+.devinfo {
+  position: fixed;
   bottom: 0;
+  text-align: left;
 }
-.footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.txt {
+  text-align: left;
   font-weight: bold;
-  font-size: 1em;
-}
-.img {
-  margin: 0 15px 10px 50px;
 }
 .dev1 {
   color: #d666e0;
