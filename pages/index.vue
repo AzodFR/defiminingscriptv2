@@ -5,9 +5,9 @@
     <div v-else>
       <Interval />
       <Banner />
-      <ElecSources />
-      <Rigs />
       <Workshops />
+      <Rigs />
+      <ElecSources />
     </div>
     <Footer />
     <div class="devinfo">
