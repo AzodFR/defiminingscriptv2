@@ -26,11 +26,11 @@ export default {
         "https://wax.cryptolions.io",
         "https://api-wax.eosauthority.com",
         "https://wax.greymass.com",
-        "https://wax.alohaeos.com",
+        /*"https://wax.alohaeos.com",
         "https://wax.waxsweden.com",
         "https://wax.pink.com",
         "https://wax.dapplica.com",
-        "https://wax.eosphere.com",
+        "https://wax.eosphere.com",*/
       ],
       selected: "https://api.wax.greeneosio.com",
     };

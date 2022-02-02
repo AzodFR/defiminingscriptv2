@@ -5,8 +5,9 @@
     <div v-else>
       <Interval />
       <Banner />
-      <Workshops />
+
       <Rigs />
+      <Workshops />
       <ElecSources />
     </div>
     <Footer />
@@ -64,6 +65,7 @@ body {
 .txt {
   text-align: left;
   font-weight: bold;
+  margin-left: 20px;
 }
 .dev1 {
   color: #d666e0;
