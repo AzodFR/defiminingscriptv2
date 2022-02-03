@@ -136,6 +136,11 @@ export default {
               });
             }
             newList.push(elem);
+            // newList.push(elem);
+            // newList.push(elem);
+            // newList.push(elem);
+            // newList.push(elem);
+            // newList.push(elem);
           });
           if (newList.length) {
             //console.log(newList)

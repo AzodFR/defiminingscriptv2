@@ -6,7 +6,8 @@
     <h4>Workshops</h4>
     <AutoClaimButton type="workshops" />
     <AutoRepairButton type="workshops" />
-    <div class="display: grid">
+    <div style="display: flex;
+  flex-wrap: wrap;">
     <b-card
         class="slide"
         v-for="(item, i) in this.$store.state.user.items['rigs']"
