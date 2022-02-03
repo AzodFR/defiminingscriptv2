@@ -157,6 +157,46 @@ export default {
           }
         );
         console.log(res);
+        if (
+          this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
+            .current_durability <=
+            this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
+              .durability &&
+          this.$store.state.user.autorepair[this.claiminfo.type][
+            this.item.asset_id
+          ]
+        ) {
+          let cost =
+            (this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
+              .durability -
+            this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
+              .current_durability) * 0.01;
+            if (this.$store.state.user.ressources["DMC"] >= cost) {
+              const res2 = await this.$store.state.user.wax.api.transact(
+          {
+            actions: [
+              {
+                account: "defiminingio",
+                name: this.claiminfo.r_action,
+                authorization: [
+                  {
+                    actor: this.$store.state.user.name,
+                    permission: "active",
+                  },
+                ],
+                data: { to: this.$store.state.user.name, asset_id: this.item.asset_id },
+              },
+            ],
+          },
+          {
+            blocksBehind: 3,
+            expireSeconds: 30,
+          }
+        );
+        console.log(res2);
+            }
+
+        }
         //alert("claiming !");
       } catch (e) {
         console.log(e);

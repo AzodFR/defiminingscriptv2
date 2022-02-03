@@ -1,48 +1,47 @@
 <template>
   <div>
-    <b-form-checkbox v-model="checked" name="check-button" switch>
+    <b-button :variant="actual ? 'success' : ''" @click="autoAll">
       <b>Auto Repair All</b>
-    </b-form-checkbox>
+    </b-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "AutoRepairButton",
+  name: "AutoClaimButton",
   props: {
     type: String,
   },
-  computed: {
-    checked: {
-      get() {
-        return this.$store.state.user.autorepair[this.type]["global"];
-      },
-      set(value) {
-        // peu importe la valeur (0 --> 1 || 1 --> 0) on la save en global (dans store et localstorage) :
-        localStorage.setItem(`${this.type}AutoRepair`, `${value}`);
+  data() {
+    return {
+      actual: false
+    }
+  },
+  methods: {
+    autoAll: function() {
+      localStorage.setItem(`${this.type}AutoRepair`, true);
         this.$store.commit("user/setAutoRepair", {
           type: this.type,
           id: "global",
-          value: value,
+          value: true,
         });
-        // et si la valeur passe à true (0 --> 1) : on passe tous les items à true (dans store et localstorage) :
-        if (value)
           this.$store.state.user.items[this.type].forEach((elem) => {
-            localStorage.setItem(`${elem.asset_id}_r`, `${value}`);
+            localStorage.setItem(elem.asset_id, true);
             this.$store.commit("user/setAutoRepair", {
               type: this.type,
               id: elem.asset_id,
-              value: value,
+              value: true,
             });
-            //console.log(this.$store.state.user.autorepair[this.type])
           });
-      },
-    },
+          this.actual = true;
+          this.$root.$emit("autoRepairAll")
+    }
   },
   mounted() {
     if (localStorage.getItem(`${this.type}AutoRepair`)) {
       let param = localStorage.getItem(`${this.type}AutoRepair`);
       if (param == "true") {
+        this.actual = true;
         this.$store.commit("user/setAutoRepair", {
           type: this.type,
           id: "global",
@@ -58,6 +57,9 @@ export default {
         });
       }
     }
+    this.$root.$on('disableRepairAll', () => {
+        this.actual = false;
+    })
   },
 };
 </script>

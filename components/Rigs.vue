@@ -3,9 +3,13 @@
     style="display: block; margin-left: 20%; margin-right: 20%"
     v-if="this.$store.state.user.items['rigs'].length"
   >
+  <div style="display: flex; margin-bottom: 1%">
     <h4>Rigs</h4>
+    <div style="display: flex; margin-left: 2%;">
     <AutoClaimButton type="rigs" />
     <AutoRepairButton type="rigs" />
+    </div>
+    </div>
     <div style="display: flex;
   flex-wrap: wrap;">
       <b-card
@@ -41,8 +45,10 @@
         <div class="energy_cost">
           <em> - {{ format(item.power_usage * 0.000085) }} DME/h</em>
         </div>
+        <div style="display:flex">
         <LocalAutoClaimButton class="switch" type="rigs" :id="item.asset_id" />
         <LocalAutoRepairButton class="switch" type="rigs" :id="item.asset_id" />
+        </div>
         <Counter
           class="counter"
           :item="item"
@@ -50,6 +56,7 @@
           :claiminfo="{
             type: 'rigs',
             action: 'claimrig',
+            r_action: 'repairig'
           }"
           :autoclaim="
             `this.$store.state.user.items['rigs']['item.asset_id']` === true

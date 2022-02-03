@@ -3,9 +3,13 @@
     style="display: block; margin-left: 20%; margin-right: 20%"
     v-if="this.$store.state.user.items['elecsources'].length"
   >
+  <div style="display: flex; margin-bottom: 1%">
     <h4>Electricity</h4>
+    <div style="display: flex; margin-left: 2%;">
     <AutoClaimButton type="elecsources" />
     <AutoRepairButton type="elecsources" />
+    </div>
+    </div>
     <div style="display: flex;
   flex-wrap: wrap;">
     <b-card
@@ -15,7 +19,7 @@
         :title="item.name"
         style="background-color: #d19e5c; border: solid 4px #ea6813; width: 25%"
       >
-        <div class="rigname">{{ item.name }}</div>
+        <!-- <div class="rigname">{{ item.name }}</div> -->
         <div class="durability">
           Dur. : {{ item.current_durability }} / {{ item.durability }}
         </div>
@@ -53,6 +57,7 @@
           :claiminfo="{
             type: 'elecsources',
             action: 'claimelec',
+            r_action: 'repairelec'
           }"
           :autoclaim="
             `this.$store.state.user.items['elecsources']['item.asset_id']` ===
