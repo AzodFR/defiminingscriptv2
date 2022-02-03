@@ -6,13 +6,13 @@
     <h4>Electricity</h4>
     <AutoClaimButton type="elecsources" />
     <AutoRepairButton type="elecsources" />
-    <carousel-3d :controls-visible="true" class="carousel" :height="350">
-      <slide
+    <div class="display: grid">
+    <b-card
         class="slide"
-        v-for="(item, i) in this.$store.state.user.items['elecsources']"
+        v-for="(item, i) in this.$store.state.user.items['rigs']"
         :key="i"
-        :index="i"
-        style="background-color: #d19e5c; border: solid 4px #ea6813"
+        :title="item.name"
+        style="background-color: #d19e5c; border: solid 4px #ea6813; width: 25%"
       >
         <div class="rigname">{{ item.name }}</div>
         <div class="durability">
@@ -57,8 +57,8 @@
             referrerpolicy="no-referrer"
           />
         </div>
-      </slide>
-    </carousel-3d>
+      </b-card>
+      </div>
   </div>
 </template>
 
@@ -126,7 +126,7 @@ export default {
   align-items: center;
 }
 .img {
-  width: 60%;
+  width: 50%;
   height: auto;
 }
 </style>

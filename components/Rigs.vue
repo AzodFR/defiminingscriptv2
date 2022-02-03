@@ -6,17 +6,17 @@
     <h4>Rigs</h4>
     <AutoClaimButton type="rigs" />
     <AutoRepairButton type="rigs" />
-    <carousel-3d :controls-visible="true" class="carousel" :height="350">
-      <slide
+    <div class="display: grid">
+      <b-card
         class="slide"
         v-for="(item, i) in this.$store.state.user.items['rigs']"
         :key="i"
-        :index="i"
-        style="background-color: #d19e5c; border: solid 4px #ea6813"
+        :title="item.name"
+        style="background-color: #d19e5c; border: solid 4px #ea6813; width: 25%"
       >
-        <div class="rigname">
+        <!-- <div class="rigname">
           {{ item.name }} ({{ item.current_durability }}/{{ item.durability }})
-        </div>
+        </div> -->
         <div class="durability">
           <em>{{ item.current_durability / item.durability_usage }} claims before repair ({{(item.durability - item.current_durability) * 0.01}} DMC)</em>
         </div>
@@ -48,8 +48,8 @@
             referrerpolicy="no-referrer"
           />
         </div>
-      </slide>
-    </carousel-3d>
+      </b-card>
+      </div>
   </div>
 </template>
 
@@ -124,7 +124,7 @@ export default {
   padding-top: 5px;
 }
 .img {
-  width: 70%;
+  width: 50%;
   height: auto;
 }
 </style>
