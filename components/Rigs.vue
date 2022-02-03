@@ -18,14 +18,28 @@
           {{ item.name }} ({{ item.current_durability }}/{{ item.durability }})
         </div>
         <div class="durability">
-          <em>{{ item.current_durability / item.durability_usage }} claims before repair ({{(item.durability - item.current_durability) * 0.01}} DMC)</em>
+          <em
+            >{{
+              Math.floor(item.current_durability / item.durability_usage)
+            }}
+            claims before repair ({{
+              ((item.durability - item.current_durability) * 0.01).toFixed(3)
+            }}
+            DMC)</em
+          >
         </div>
         <div class="production">
-          <em>+ ~{{item.production / 1000}} {{item.claim_type}}/h</em>
+          <em>
+            + {{ ((item.production * 0.0304) / 24).toFixed(3) }}
+            {{ item.claim_type }}/h</em
+          >
         </div>
         <div class="energy_cost">
-          <em>- {{format(item.power_usage * 0.000086)}} DME/h</em>
-          </div>
+          <em> - {{ (item.durability_usage * 0.01).toFixed(3) }} DMC/h</em>
+        </div>
+        <div class="energy_cost">
+          <em> - {{ (item.power_usage * 0.000085).toFixed(3) }} DME/h</em>
+        </div>
         <LocalAutoClaimButton class="switch" type="rigs" :id="item.asset_id" />
         <LocalAutoRepairButton class="switch" type="rigs" :id="item.asset_id" />
         <Counter
@@ -62,6 +76,11 @@ import AutoRepairButton from "./AutoRepairButton.vue";
 import LocalAutoRepairButton from "./LocalAutoRepairButton.vue";
 export default {
   name: "Rigs", /// *************
+  data() {
+    return {
+      production: 0,
+    };
+  },
   components: {
     Carousel3d,
     Slide,
@@ -100,11 +119,13 @@ export default {
   padding: 5px 0;
 }
 .production {
- color: green;
+  color: green;
+  font-weight: bold;
 }
 
 .energy_cost {
   color: red;
+  font-weight: bold;
 }
 .slide {
   border-radius: 5px;

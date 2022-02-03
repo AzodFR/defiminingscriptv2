@@ -72,10 +72,10 @@ export default {
   },
   methods: {
     /*test() {
-      console.log("Test :");
-      console.log(this.claiminfo.type);
-      console.log(this.claiminfo.action);
-      console.log(this.item.asset_id);
+      console.log("Integrity_usage :");
+      console.log(this.item.current_durability);
+      console.log(this.item.durability_usage);
+      console.log(this.item.current_durability >= this.item.durability_usage);
     },*/
     showRemaining() {
       const timer = setInterval(() => {
@@ -101,7 +101,9 @@ export default {
             console.log(this.claiminfo.type);
             console.log(this.claiminfo.action);
             console.log(this.item.asset_id);
-            this.handleClaim();
+            if (this.item.current_durability >= this.item.durability_usage) {
+              this.handleClaim();
+            }
           }
           return null;
         }
@@ -154,6 +156,7 @@ export default {
             expireSeconds: 30,
           }
         );
+        console.log(res);
         //alert("claiming !");
       } catch (e) {
         console.log(e);
