@@ -31,6 +31,17 @@ export const state = () => ({
     "DME": 0,
     "DMT": 0
   },
+  production: {
+    "DMC": 0,
+    "DME": 0,
+    "DMT": 0
+  },
+  cost: {
+    "DMC": 0,
+    "DME": 0,
+    "DMT": 0
+  },
+  logged_asset: [],
   ressources: {
     "DMC": 0,
     "DME": 0,
@@ -76,5 +87,15 @@ export const mutations = {
   },
   setAutoRepair(state, param) {
     state.autorepair[param.type][param.id] = param.value;
-  }
+  },
+  addProduction(state, param) {
+    state.production[param.type] += param.value;
+  },
+  addCost(state, param) {
+    state.cost[param.type] += param.value;
+  },
+  addAsset(state, id) {
+    state.logged_asset.push(id);
+  },
+
 }

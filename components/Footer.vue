@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <footer>
-      <a class="QTTlogo" href="https://discord.gg/" target="_blank"
+      <a class="QTTlogo" href="https://discord.gg/CPQujfCDJw" target="_blank"
         ><img src="../assets/QTTlogo.png" alt="" class="img"
       /></a>
     </footer>

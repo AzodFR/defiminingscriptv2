@@ -54,7 +54,27 @@ export default {
         .then(async (items) => {
           const newList = [];
           await items.rows.forEach(async (elem) => {
-            elem.img = this.findInTemplate(elem.template_id).img;
+            const tmp = this.findInTemplate(elem.template_id);
+            elem.img = tmp.img;
+            elem.durability_usage = tmp.durability_usage;
+            elem.claim_type = tmp.claim_type;
+            elem.production = tmp.production;
+            elem.power_usage = tmp.power_usage;
+            if (!this.$store.state.user.logged_asset.includes(elem.asset_id)) {
+              this.$store.commit("user/addAsset", elem.asset_id);
+              this.$store.commit("user/addProduction", {
+                type: elem.claim_type,
+                value: elem.production / 1000,
+              });
+              this.$store.commit("user/addCost", {
+                type: "DME",
+                value: elem.power_usage / 5,
+              });
+              this.$store.commit("user/addCost", {
+                type: "DMC",
+                value: elem.durability_usage / 100,
+              });
+            }
             if (localStorage.getItem(`${elem.asset_id}`)) {
               if (localStorage.getItem(`${elem.asset_id}`) == "true") {
                 this.$store.commit("user/setAutoClaim", {
@@ -172,42 +192,74 @@ export default {
       }, time);
     },
     async fetchTokens() {
-      const tokens = ["DMT", "DME", "DMC", "WAX"];
-      tokens.forEach(async (token) => {
-        const code = token == "WAX" ? "eosio.token" : "defiminingtk";
-        await fetch(
-          `${this.$store.state.user.wax.rpc.endpoint}/v1/chain/get_currency_balance`,
-          {
-            credentials: "omit",
-            headers: {
-              Accept: "*/*",
-              "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
-              "Content-Type": "text/plain;charset=UTF-8",
-              "Sec-Fetch-Dest": "empty",
-              "Sec-Fetch-Mode": "no-cors",
-              "Sec-Fetch-Site": "cross-site",
-            },
-            referrer: "https://thedefimining.io/",
-            body: `{\"code\":\"${code}\",\"account\":\"${this.$store.state.user.name}\",\"symbol\":\"${token}\"}`,
-            method: "POST",
-            mode: "cors",
-          }
-        )
-          .then((x) => x.json())
-          .then((y) => {
-            if (y[0] == undefined) {
+      await fetch(
+        `${this.$store.state.user.wax.rpc.endpoint}/v1/chain/get_currency_balance`,
+        {
+          credentials: "omit",
+          headers: {
+            Accept: "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "Content-Type": "text/plain;charset=UTF-8",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "no-cors",
+            "Sec-Fetch-Site": "cross-site",
+          },
+          referrer: "https://thedefimining.io/",
+          body: `{\"code\":\"defiminingtk\",\"account\":\"${this.$store.state.user.name}\"}`,
+          method: "POST",
+          mode: "cors",
+        }
+      )
+        .then((x) => x.json())
+        .then((y) => {
+          const sym = ["DMC", "DME", "DMT"]
+          for (let i = 0; i < 3; i++) {
+            if (i >= y.length) {
               this.$store.commit("user/setToken", {
-                type: token,
+                type: sym[i],
                 value: "0.0000",
               });
             } else {
               this.$store.commit("user/setToken", {
-                type: token,
-                value: y[0] != undefined ? y[0].split(" ")[0] : "0.0000",
+                type: y[i].split(" ")[1],
+                value: y[i] != undefined ? y[i].split(" ")[0] : "0.0000",
               });
             }
-          });
-      });
+          }
+        });
+
+      await fetch(
+        `${this.$store.state.user.wax.rpc.endpoint}/v1/chain/get_currency_balance`,
+        {
+          credentials: "omit",
+          headers: {
+            Accept: "*/*",
+            "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
+            "Content-Type": "text/plain;charset=UTF-8",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "no-cors",
+            "Sec-Fetch-Site": "cross-site",
+          },
+          referrer: "https://thedefimining.io/",
+          body: `{\"code\":\"eosio.token\",\"account\":\"${this.$store.state.user.name}\",\"symbol\":\"WAX\"}`,
+          method: "POST",
+          mode: "cors",
+        }
+      )
+        .then((x) => x.json())
+        .then((y) => {
+          if (y[0] == undefined) {
+            this.$store.commit("user/setToken", {
+              type: "WAX",
+              value: "0.0000",
+            });
+          } else {
+            this.$store.commit("user/setToken", {
+              type: "WAX",
+              value: y[0] != undefined ? y[0].split(" ")[0] : "0.0000",
+            });
+          }
+        });
     },
   },
 };

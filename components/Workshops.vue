@@ -18,6 +18,15 @@
         <div class="durability">
           Dur. : {{ item.current_durability }} / {{ item.durability }}
         </div>
+        <div class="durability">
+          <em>{{ item.current_durability / item.durability_usage }} claims before repair ({{(item.durability - item.current_durability) * 0.01}} DMC)</em>
+        </div>
+        <div class="production">
+          <em>+ ~{{item.production / 1000}} {{item.claim_type}}/h</em>
+        </div>
+        <div class="energy_cost">
+          <em>- {{item.power_usage / 5}} DME/h</em>
+          </div>
         <LocalAutoClaimButton
           class="switch"
           type="workshops"

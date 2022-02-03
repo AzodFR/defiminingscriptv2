@@ -6,7 +6,7 @@
     <h4>Rigs</h4>
     <AutoClaimButton type="rigs" />
     <AutoRepairButton type="rigs" />
-    <carousel-3d :controls-visible="true" class="carousel" :height="330">
+    <carousel-3d :controls-visible="true" class="carousel" :height="350">
       <slide
         class="slide"
         v-for="(item, i) in this.$store.state.user.items['rigs']"
@@ -18,8 +18,14 @@
           {{ item.name }} ({{ item.current_durability }}/{{ item.durability }})
         </div>
         <div class="durability">
-          <em>{{ item.current_durability / 5 }} claims before repair</em>
+          <em>{{ item.current_durability / item.durability_usage }} claims before repair ({{(item.durability - item.current_durability) * 0.01}} DMC)</em>
         </div>
+        <div class="production">
+          <em>+ ~{{item.production / 1000}} {{item.claim_type}}/h</em>
+        </div>
+        <div class="energy_cost">
+          <em>- {{item.power_usage / 5}} DME/h</em>
+          </div>
         <LocalAutoClaimButton class="switch" type="rigs" :id="item.asset_id" />
         <LocalAutoRepairButton class="switch" type="rigs" :id="item.asset_id" />
         <Counter
@@ -56,7 +62,6 @@ import AutoRepairButton from "./AutoRepairButton.vue";
 import LocalAutoRepairButton from "./LocalAutoRepairButton.vue";
 export default {
   name: "Rigs", /// *************
-  data() {},
   components: {
     Carousel3d,
     Slide,
@@ -83,6 +88,13 @@ export default {
   justify-content: center;
   font-weight: bold;
   padding: 5px 0;
+}
+.production {
+ color: green;
+}
+
+.energy_cost {
+  color: red;
 }
 .slide {
   border-radius: 5px;
