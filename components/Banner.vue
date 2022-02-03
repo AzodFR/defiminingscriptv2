@@ -15,7 +15,7 @@
         </div>
         Ressources:
         <div style="margin-left: 4%">
-         <b-form-checkbox @change="changeType" name="check-button" switch>
+          <b-form-checkbox @change="changeType" name="check-button" switch>
             Hour / Daily
           </b-form-checkbox>
           <p>
@@ -36,23 +36,6 @@
             >
           </p>
           <p>
-            DME: {{ user.ressources["DME"] }}
-            <label
-              :class="
-                user.production['DME'] - user.cost['DME'] > 0
-                  ? 'positive'
-                  : 'negative'
-              "
-              >({{ user.production["DME"] - user.cost["DME"] > 0 ? "+" : ""
-              }}{{
-                format(
-                  (user.production["DME"] - user.cost["DME"]) *
-                    info_mult[info_choice]
-                )
-              }}/{{ info_type[info_choice] }})</label
-            >
-          </p>
-          <p>
             DMC: {{ user.ressources["DMC"] }}
             <label
               :class="
@@ -64,6 +47,23 @@
               }}{{
                 format(
                   (user.production["DMC"] - user.cost["DMC"]) *
+                    info_mult[info_choice]
+                )
+              }}/{{ info_type[info_choice] }})</label
+            >
+          </p>
+          <p>
+            DME: {{ user.ressources["DME"] }}
+            <label
+              :class="
+                user.production['DME'] - user.cost['DME'] > 0
+                  ? 'positive'
+                  : 'negative'
+              "
+              >({{ user.production["DME"] - user.cost["DME"] > 0 ? "+" : ""
+              }}{{
+                format(
+                  (user.production["DME"] - user.cost["DME"]) *
                     info_mult[info_choice]
                 )
               }}/{{ info_type[info_choice] }})</label
