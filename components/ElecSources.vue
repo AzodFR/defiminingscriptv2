@@ -24,7 +24,7 @@
               Math.floor(item.current_durability / item.durability_usage)
             }}
             claims before repair ({{
-              ((item.durability - item.current_durability) * 0.01).toFixed(3)
+              format((item.durability - item.current_durability) * 0.01)
             }}
             DMC)</em
           >
@@ -33,7 +33,7 @@
           <em>+ {{ item.production / 10000 }} {{ item.claim_type }}/h</em>
         </div>
         <div class="energy_cost">
-          <em>- {{ (item.durability_usage * 0.01).toFixed(3) }} DMC/h</em>
+          <em>- {{ format(item.durability_usage * 0.01) }} DMC/h</em>
         </div>
         <LocalAutoClaimButton
           class="switch"

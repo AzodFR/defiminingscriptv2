@@ -64,11 +64,11 @@ export default {
               this.$store.commit("user/addAsset", elem.asset_id);
               this.$store.commit("user/addProduction", {
                 type: elem.claim_type,
-                value: elem.production / 1000,
+                value: (elem.production * 0.0304) / 24,
               });
               this.$store.commit("user/addCost", {
                 type: "DME",
-                value: elem.power_usage * 0.000086,
+                value: elem.power_usage * 0.000085,
               });
               this.$store.commit("user/addCost", {
                 type: "DMC",
@@ -212,7 +212,7 @@ export default {
       )
         .then((x) => x.json())
         .then((y) => {
-          const sym = ["DMC", "DME", "DMT"]
+          const sym = ["DMC", "DME", "DMT"];
           for (let i = 0; i < 3; i++) {
             if (i >= y.length) {
               this.$store.commit("user/setToken", {

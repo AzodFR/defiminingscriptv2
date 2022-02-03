@@ -17,12 +17,11 @@
         <div class="rigname">{{ item.name }}</div>
         <div class="production">
           <em
-            >+ {{ (item.production * 0.24).toFixed(3) }}
-            {{ item.claim_type }}/h</em
+            >+ {{ format(item.production * 0.01) }} {{ item.claim_type }}/h</em
           >
         </div>
         <div class="energy_cost">
-          <em>- {{ (item.power_usage * 0.000085).toFixed(3) }} DME/h</em>
+          <em>- {{ format(item.power_usage * 0.000085) }} DME/h</em>
         </div>
         <LocalAutoClaimButton
           class="switch"
