@@ -62,10 +62,32 @@ export default {
             elem.power_usage = tmp.power_usage;
             if (!this.$store.state.user.logged_asset.includes(elem.asset_id)) {
               this.$store.commit("user/addAsset", elem.asset_id);
-              this.$store.commit("user/addProduction", {
+              // si elem.claim_type === "DMT" : factor = 0.0304 / 24
+              console.log(elem.claim_type);
+              if (elem.claim_type === "DMT") {
+                this.$store.commit("user/addProduction", {
+                  type: elem.claim_type,
+                  value: (elem.production * 0.0304) / 24,
+                });
+              }
+              // si elem.claim_type === "DMC" : factor = 0.01
+              if (elem.claim_type === "DMC") {
+                this.$store.commit("user/addProduction", {
+                  type: elem.claim_type,
+                  value: elem.production * 0.01,
+                });
+              }
+              // si elem.claim_type === "DME" : factor = 0.0001
+              if (elem.claim_type === "DME") {
+                this.$store.commit("user/addProduction", {
+                  type: elem.claim_type,
+                  value: elem.production * 0.0001,
+                });
+              }
+              /*this.$store.commit("user/addProduction", {
                 type: elem.claim_type,
-                value: (elem.production * 0.0304) / 24,
-              });
+                value: elem.production * factor,
+              });*/
               this.$store.commit("user/addCost", {
                 type: "DME",
                 value: elem.power_usage * 0.000085,
