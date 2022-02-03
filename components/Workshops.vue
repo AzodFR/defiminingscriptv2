@@ -10,7 +10,7 @@
   flex-wrap: wrap;">
     <b-card
         class="slide"
-        v-for="(item, i) in this.$store.state.user.items['rigs']"
+        v-for="(item, i) in this.$store.state.user.items['workshops']"
         :key="i"
         :title="item.name"
         style="background-color: #d19e5c; border: solid 4px #ea6813; width: 25%"
