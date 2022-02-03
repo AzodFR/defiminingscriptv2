@@ -68,7 +68,7 @@ export default {
               });
               this.$store.commit("user/addCost", {
                 type: "DME",
-                value: elem.power_usage / 5,
+                value: elem.power_usage * 0.000086,
               });
               this.$store.commit("user/addCost", {
                 type: "DMC",

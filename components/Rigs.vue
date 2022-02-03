@@ -24,7 +24,7 @@
           <em>+ ~{{item.production / 1000}} {{item.claim_type}}/h</em>
         </div>
         <div class="energy_cost">
-          <em>- {{item.power_usage / 5}} DME/h</em>
+          <em>- {{format(item.power_usage * 0.000086)}} DME/h</em>
           </div>
         <LocalAutoClaimButton class="switch" type="rigs" :id="item.asset_id" />
         <LocalAutoRepairButton class="switch" type="rigs" :id="item.asset_id" />
@@ -69,6 +69,16 @@ export default {
     LocalAutoClaimButton,
     AutoRepairButton,
     LocalAutoRepairButton,
+  },
+  methods: {
+    format: function (value) {
+      let splitted = value.toString().split(".");
+      if (splitted.lenght == 1 || splitted[1] == undefined) return value;
+      if (splitted[1].length > 4) {
+        splitted[1] = splitted[1].substring(0, 3);
+      }
+      return splitted.join(".");
+    },
   },
 };
 </script>
