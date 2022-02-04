@@ -167,10 +167,7 @@ export default {
           ]
         ) {
           let cost =
-            (this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
-              .durability -
-            this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
-              .current_durability) * 0.01;
+            (this.item.durability - this.item.current_durability) * 0.01;
             if (this.$store.state.user.ressources["DMC"] >= cost) {
               const res2 = await this.$store.state.user.wax.api.transact(
           {
