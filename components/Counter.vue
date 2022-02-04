@@ -119,6 +119,8 @@ export default {
       }, 1000);
     },
     async handleClaim() {
+      if (this.$store.state.user.lock) return;
+      this.$store.commit("user/setLock", true)
       console.log("ready to claim !");
       console.log(this.item.asset_id);
       const test =
@@ -196,6 +198,7 @@ export default {
         console.log(e);
       }
       this.wait = false;
+      this.$store.commit("user/setLock", false)
     },
   },
 };

@@ -3,6 +3,7 @@ import * as waxjs from "@waxio/waxjs/dist";
 export const state = () => ({
   name: "",
   energy: 0,
+  lock: false,
   autoclaim: {
     "rigs": {
       "global": false,
@@ -97,6 +98,9 @@ export const mutations = {
   addAsset(state, id) {
     state.logged_asset.push(id);
   },
+  setLock(state, value) {
+    state.lock = value;
+  }
 
 }
 
