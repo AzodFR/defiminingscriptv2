@@ -56,7 +56,7 @@
           :claiminfo="{
             type: 'rigs',
             action: 'claimrig',
-            r_action: 'repairig'
+            r_action: 'repairrig'
           }"
           :autoclaim="
             `this.$store.state.user.items['rigs']['item.asset_id']` === true
