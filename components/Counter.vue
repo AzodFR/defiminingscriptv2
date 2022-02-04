@@ -158,10 +158,7 @@ export default {
         );
         console.log(res);
         if (
-          this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
-            .current_durability <=
-            this.$store.state.user.items[this.claiminfo.type][this.item.asset_id]
-              .durability &&
+          this.item.current_durability <= this.item.durability / 2 &&
           this.$store.state.user.autorepair[this.claiminfo.type][
             this.item.asset_id
           ]
