@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button :variant="value ? 'success' : 'danger'" @click="autoOne" class="local-button">
-      <b>Auto Claim</b>
+    <b-button :variant="value ? 'success' : 'danger'" @click="autoOne" :class="value ? 'success' : 'danger'" size="sm">
+      C {{value ? '[ON]' : '[OFF]'}}
     </b-button>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
             id: "global",
             value: false,
           });
-          this.$root.$emit("disableClaimAll")
+          this.$root.$emit(`${this.type}disableClaimAll`)
       }
       localStorage.setItem(`${this.id}`, `${!actual}`);
         this.$store.commit("user/setAutoClaim", {
@@ -40,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on('autoClaimAll', () => {
+    this.$root.$on(`${this.type}autoClaimAll`, () => {
       localStorage.setItem(`${this.id}`, `true`);
         this.$store.commit("user/setAutoClaim", {
           type: this.type,

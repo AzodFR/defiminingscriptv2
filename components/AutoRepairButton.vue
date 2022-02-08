@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button :variant="actual ? 'success' : ''" @click="autoAll">
-      <b>Auto Repair All</b>
+    <b-button :variant="actual ? 'success' : ''" @click="autoAll" class="buttonAll" :disabled="actual">
+      Auto Repair All
     </b-button>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
             });
           });
           this.actual = true;
-          this.$root.$emit("autoRepairAll")
+          this.$root.$emit(`${this.type}autoRepairAll`)
     }
   },
   mounted() {
@@ -57,7 +57,7 @@ export default {
         });
       }
     }
-    this.$root.$on('disableRepairAll', () => {
+    this.$root.$on(`${this.type}disableRepairAll`, () => {
         this.actual = false;
     })
   },

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <b-button :variant="value ? 'success' : 'danger'" @click="autoOne" class="local-button">
-      <b>Auto Repair</b>
+    <b-button :variant="value ? 'success' : 'danger'" @click="autoOne" :class="value ? 'success' : 'danger'" size="sm">
+      R {{value ? '[ON]' : '[OFF]'}}
     </b-button>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
             id: "global",
             value: false,
           });
-           this.$root.$emit("disableRepairAll")
+           this.$root.$emit(`${this.type}disableRepairAll`)
       }
       localStorage.setItem(`${this.id}_r`, `${!actual}`);
         this.$store.commit("user/setAutoRepair", {
@@ -40,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    this.$root.$on('autoRepairAll', () => {
+    this.$root.$on(`${this.type}autoRepairAll`, () => {
       localStorage.setItem(`${this.id}_r`, `true`);
         this.$store.commit("user/setAutoRepair", {
           type: this.type,

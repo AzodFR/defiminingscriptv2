@@ -1,21 +1,18 @@
 <template>
   <div>
-    <DefiLogo />
+    <DefiLogo v-if="name == ''"/>
     <Login v-if="name == ''" />
     <div v-else>
       <Interval />
-      <Banner />
-      <Rigs />
-      <Workshops />
-      <ElecSources />
+      <Test />
     </div>
-    <Footer />
     <div class="devinfo">
       <p class="txt">
         Created by
         <span class="dev1"> Azod#9999 (vzfjg.wam) </span>
         &&
         <span class="dev2"> HME#1240 (43xts.wam) </span>
+        (v2.5.0)
       </p>
     </div>
   </div>
@@ -24,24 +21,19 @@
 <script>
 import DefiLogo from "../components/DefiLogo.vue";
 import Login from "../components/Login.vue";
-import Banner from "../components/Banner.vue";
 import Interval from "../components/Interval.vue";
-import Rigs from "../components/Rigs.vue";
-import ElecSources from "../components/ElecSources.vue";
-import Workshops from "../components/Workshops.vue";
-import Footer from "../components/Footer.vue";
+import Test from "~/components/Test.vue";
+import Buffer from "../components/Buffer.vue";
 
 export default {
   name: "IndexPage",
   components: {
     DefiLogo,
     Login,
-    Banner,
     Interval,
-    Rigs,
-    ElecSources,
-    Workshops,
-  },
+    Test,
+    Buffer
+},
   computed: {
     name() {
       return this.$store.state.user.name;
@@ -52,7 +44,8 @@ export default {
 
 <style>
 body {
-  background-color: #111c38;
+  /* background-color: #111c38; */
+  background-color: rgb(34, 34, 34);
   color: aliceblue;
 }
 

@@ -7,5 +7,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  width: 5%;
+  height: 5%;
 }
 </style>
