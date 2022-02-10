@@ -48,7 +48,7 @@
         </div>
         <div class="profit">
           <label class="profit-title">Daily Profit:</label
-          ><label class="energy-value cpu-low">17 ￦</label>
+          ><label class="energy-value cpu-low">?? ￦</label>
         </div>
       </div>
       <div class="token-div">
