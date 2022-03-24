@@ -2,6 +2,7 @@ import * as waxjs from "@waxio/waxjs/dist";
 
 export const state = () => ({
   name: "",
+  max_energy: 500000,
   energy: 0,
   stake: 0,
   cpu: 0,

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="test">
     <Buffer ref="buffer" />
     <div class="info-user">
       <DefiLogo class="logo-top" />
@@ -110,8 +110,11 @@
           DME <img src="../assets/DME.png" class="game-img" />
         </p>
       </div>
-      <div>
+      <div style="display: flex">
+        <div >
         <b-button size="sm" v-b-tooltip.hover title="Activate this to refresh the page every 30 min." :variant="autologin ? 'success': 'danger'" @click="switchLog">AutoLogin: {{autologin ? "ON" : "OFF"}}</b-button>
+        </div>
+        <Energy />
       </div>
     </div>
 
@@ -188,7 +191,7 @@
 import ItemClaim from "./ItemClaim.vue";
 import Buffer from "./Buffer.vue";
 import DefiLogo from "./DefiLogo.vue";
-
+import Energy from "./Energy.vue";
 export default {
   name: "Test",
   data() {
@@ -202,7 +205,7 @@ export default {
       return this.$store.state.user;
     },
   },
-  components: { ItemClaim, Buffer, DefiLogo },
+  components: { ItemClaim, Buffer, DefiLogo, Energy },
   methods: {
     switchLog: function(){
       this.autologin = !this.autologin
@@ -247,6 +250,11 @@ export default {
 </script>
 
 <style>
+
+.test {
+  margin-top: 2.5%;
+}
+
 .info-user {
   margin-left: 20%;
   margin-right: 20%;
