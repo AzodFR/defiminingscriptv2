@@ -6,7 +6,7 @@
         <span class="dev1"> Azod#9999 (vzfjg.wam) </span>
         &&
         <span class="dev2"> HME#1240 (43xts.wam) </span>
-        (v2.6)
+        (v2.7)
       </p>
     </div>
     <DefiLogo v-if="name == ''"/>

@@ -26,7 +26,7 @@ export default {
       }, time)
     },
     fetchStake: async function() {
-await fetch("https://chain.wax.io/v1/chain/get_account", {
+await fetch(`${this.$store.state.user.wax.rpc.endpoint}v1/chain/get_account`, {
     "credentials": "omit",
     "headers": {
         "Accept-Language": "fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3",
@@ -62,7 +62,7 @@ await fetch("https://chain.wax.io/v1/chain/get_account", {
       return template;
     },
     async fetchItems(item) {
-      await fetch("https://wax.greymass.com/v1/chain/get_table_rows", {
+      await fetch(`${this.$store.state.user.wax.rpc.endpoint}/v1/chain/get_table_rows`, {
         credentials: "omit",
         headers: {
           Accept: "*/*",
