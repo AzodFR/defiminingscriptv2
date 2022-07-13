@@ -3,6 +3,7 @@
 </template>
 
 <script>
+const { JsonRpc } = require("eosjs");
 const time = 15000;
 export default {
   name: "Interval",
